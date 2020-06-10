@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>
+			Test_Selenium
+		</title>
+		<script>
+			function rcl(e){
+				if (!e) e = window.event;
+				document.form.t2.value += "[右键]";
+			}
+			function dcl(e){
+				if (!e) e = window.event;
+				document.form.t2.value += "[双击]";
+			}
+			function cl(e){
+				if (!e) e = window.event;
+				document.form.t2.value += "[单击]";
+			}
+			function onclick1(s){
+				document.form.t2.value += "[" + s + "]";
+			}
+			function onchange1(s){
+				document.form.t2.value += "[" + s + "]";
+			}
+			
+			function myFunction()
+			{
+				document.form.t2.value += "[等待]";
+				setTimeout(function(){document.getElementById("test01").innerHTML="<input type='text' id='test_input_01' style='background-color: red'/>"},3000);
+			}
+			function test_alert()
+			{
+				var a = alert('我是alert弹框')
+				console.log(a)
+				document.form.t2.value += "[alert]";
+			}
+			function test_confirm()
+			{
+				var c = confirm('我是confirm弹框，请选择确认或取消')
+				if(c) {
+					document.form.t2.value += "[confirm 确认]";
+				} else {
+					document.form.t2.value += "[confirm 取消]";
+				}
+			}
+			function test_prompt()
+			{
+				var p = prompt('我是prompt弹框')
+				if(p != null) {
+					document.form.t2.value += "[prompt " + p + "]";
+				} else {
+					document.form.t2.value += "[prompt 取消]";
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<form id="form" name="form">
+			<div style="height: 200px;">
+				<div style="float: left;Padding:20px;">
+					<textarea name="t2" style="width:200px;height:100px;"></textarea><br>
+					<input type="button" onclick="document.form.t2.value=&#39;&#39;" value="清除" name="t1">
+				</div>
+				<div style="float: left;Padding:20px;" oncontextmenu="console.log(Date()); return false">
+					<div id="test01"></div>
+					<input type="button" value="测试等待" onclick="myFunction()"><br>
+					<input type="button" value="测试双击" ondblclick="dcl(event)"><br>
+					<input type="button" value="测试单击" onclick="cl(event)"><br>
+					<input type="button" value="测试右击" oncontextmenu="rcl(event)"><br>
+				</div>
+				<div style="float: left;Padding:20px;">
+					<input type="button" value="我是你永远点不了的按钮" disabled="">
+					<input type="file" id="file" />
+					<table id='tb'>
+						<tr>
+							<th>语文</th>
+							<th>数学</th>
+							<th>英语</th>
+						</tr>
+						<tr>
+							<td>66</td>
+							<td>55</td>
+							<td>99</td>
+						</tr>
+						<tr>
+							<td>77</td>
+							<td>19</td>
+							<td>0</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+				<div style="float: left;Padding:20px;">
+					<span>
+						<input type="checkbox" value="Click me" onclick="onclick1('点击也帅气')" onchange="onchange1('选中更帅')">
+						你帅吗？
+					</span>
+					<br />
+					<span>
+						<input type="checkbox" value="Click me" onclick="onclick1('点击也高')" onchange="onchange1('选中更高')">
+						你高吗？
+					</span>
+					<br />
+					<span>
+						<input type="checkbox" value="Click me" onclick="onclick1('点击也有钱')" onchange="onchange1('选中更有钱')">
+						你有钱吗？
+					</span>
+					<br />
+				</div>
+				<div style="float: left;Padding:20px;">
+					<span>
+						高帅和有钱选一个吧？
+					</span>
+					<br />
+					<span>
+						高帅<input type="radio" name="r1" value="gs" onclick="onclick1('高帅!')" onchange="onchange1('高帅可以被保养!')">
+					</span>
+					<span>
+						有钱<input type="radio" name="r1" value="yq" onclick="onclick1('有钱!')" onchange="onchange1('还是钱比较重要!')">
+					</span>
+				</div>
+			</div>
+			</div>
+			<div style="clear: both;"></div>
+			<hr />
+			<div>
+				<span>
+					下午茶吃点啥?
+				</span>
+				<span>
+					<select name="fruit">
+						<option value ="volvo">不选就不吃</option>
+						<option value ="b">香蕉</option>
+						<option value="a">苹果</option>
+						<option value="s">俯卧撑</option>
+					</select>
+				</span>
+			</div>
+		</form>
+		<hr />
+		<div>
+			<img src="https://c-ssl.duitang.com/uploads/item/201511/21/20151121171107_zMZcy.jpeg" style="width:40px;height:40px;"
+			 onclick="cl(event)" ondblclick="dcl(event)">
+		</div>
+		<hr />
+		<div>
+			<ul>
+				<li style="">
+					<a tabindex="0" style="">
+						<label class="checkbox" style="">
+							<input value="LB1" type="checkbox">1 Label
+						</label>
+					</a>
+				</li>
+				<li style="">
+					<a tabindex="0" style="">
+						<label class="checkbox" style="">
+							<input value="LB2" type="checkbox">2 Label
+						</label>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<hr />
+		
+		<div>
+			<input type="button" value="点我测试alert弹框" onclick="test_alert()"/>
+			<input type="button" value="点我测试confirm弹框" onclick="test_confirm()"/>
+			<input type="button" value="点我测试prompt弹框" onclick="test_prompt()"/>
+		</div>
+		<hr />
+		
+		<iframe id="s_iframe" src="https://ssxxlive.top" width="60%" height="400px" scrolling="no"></iframe>
+
+
+	</body>
+</html>
